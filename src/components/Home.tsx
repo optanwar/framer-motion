@@ -22,6 +22,14 @@ const HomePage: React.FC = () => {
             Basic Button Example
           </Link>
         </li>
+           <li>
+          <Link
+            to="/card"
+            className="text-fuchsia-50 hover:underline"
+          >
+            Card Example
+          </Link>
+        </li>
       </ul>
     </main>
   );
