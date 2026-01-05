@@ -54,6 +54,14 @@ const HomePage: React.FC = () => {
             Scroll Example
           </Link>
         </li>
+             <li>
+          <Link
+            to="/layouts-in-motion"
+            className="text-fuchsia-50 hover:underline"
+          >
+            Layout motion Example
+          </Link>
+        </li>
       </ul>
     </main>
   );

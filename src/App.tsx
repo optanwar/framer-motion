@@ -5,6 +5,7 @@ import CardsComponents from "./components/Card";
 import AdvanedCard from "./components/AdvancedCard";
 import Sidebar from "./components/Sidebar";
 import ScrollBase from "./components/ScrollBase";
+import LayoutsInMotion from "./components/LayoutsInMotion";
 
 const App: React.FC = () => {
   return (
@@ -16,6 +17,8 @@ const App: React.FC = () => {
         <Route path="/card-advanced" element={<AdvanedCard />} />
         <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/scroll" element={<ScrollBase />} />
+          <Route path="/layouts-in-motion" element={<LayoutsInMotion />} />
+
       </Routes>
     </>
   );
