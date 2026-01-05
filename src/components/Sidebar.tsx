@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 
-/* ---------------- SIDEBAR DATA ---------------- */
+
 const navItems = [
   { name: "Dashboard", icon: LayoutDashboard },
   { name: "Users", icon: Users },
@@ -36,7 +36,7 @@ const DashboardMainPage: React.FC = () => {
 
   return (
     <div className="h-screen w-full flex bg-neutral-950 text-white">
-      {/* ---------------- SIDEBAR ---------------- */}
+
       <motion.aside
         variants={sidebarVariants}
         animate={open ? "open" : "closed"}
@@ -44,7 +44,7 @@ const DashboardMainPage: React.FC = () => {
         onMouseLeave={() => setOpen(false)}
         className="relative h-full bg-neutral-900 border-r border-white/10 flex flex-col"
       >
-        {/* LOGO + TOGGLE */}
+
         <div className="h-16 flex items-center justify-between px-4">
           <AnimatePresence>
             {open && (
@@ -59,7 +59,7 @@ const DashboardMainPage: React.FC = () => {
             )}
           </AnimatePresence>
 
-          {/* Toggle Button */}
+
           <button
             onClick={() => setOpen(!open)}
             className="p-1 rounded-md hover:bg-white/10 transition"
@@ -68,7 +68,7 @@ const DashboardMainPage: React.FC = () => {
           </button>
         </div>
 
-        {/* NAV ITEMS */}
+
         <nav className="flex-1 mt-4 space-y-1">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -88,7 +88,7 @@ const DashboardMainPage: React.FC = () => {
                     : "text-neutral-400 hover:text-white"
                 }`}
               >
-                {/* ACTIVE INDICATOR */}
+
                 {isActive && (
                   <motion.span
                     layoutId="active-indicator"
@@ -98,7 +98,7 @@ const DashboardMainPage: React.FC = () => {
 
                 <Icon size={18} />
 
-                {/* TEXT */}
+          
                 <AnimatePresence>
                   {open && (
                     <motion.span
@@ -118,7 +118,7 @@ const DashboardMainPage: React.FC = () => {
 
       {/* ---------------- MAIN CONTENT ---------------- */}
       <main className="flex-1 p-6 overflow-y-auto">
-        {/* HEADER */}
+   
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -130,7 +130,7 @@ const DashboardMainPage: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* STATS */}
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {["Revenue", "Users", "Orders"].map((item, i) => (
             <motion.div
@@ -147,7 +147,7 @@ const DashboardMainPage: React.FC = () => {
           ))}
         </div>
 
-        {/* ACTIVITY */}
+       
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
