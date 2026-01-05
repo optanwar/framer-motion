@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import CardsComponents from "./components/Card";
 import AdvanedCard from "./components/AdvancedCard";
 import Sidebar from "./components/Sidebar";
+import ScrollBase from "./components/ScrollBase";
 
 const App: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const App: React.FC = () => {
         <Route path="/card" element={<CardsComponents />} />
         <Route path="/card-advanced" element={<AdvanedCard />} />
         <Route path="/sidebar" element={<Sidebar />} />
+          <Route path="/scroll" element={<ScrollBase />} />
       </Routes>
     </>
   );
