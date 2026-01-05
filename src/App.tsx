@@ -3,6 +3,7 @@ import AboutPage from "./components/Button";
 import Home from "./components/Home";
 import CardsComponents from "./components/Card";
 import AdvanedCard from "./components/AdvancedCard";
+import Sidebar from "./components/Sidebar";
 
 const App: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const App: React.FC = () => {
         <Route path="/basic" element={<AboutPage />} />
         <Route path="/card" element={<CardsComponents />} />
         <Route path="/card-advanced" element={<AdvanedCard />} />
+        <Route path="/sidebar" element={<Sidebar />} />
       </Routes>
     </>
   );
