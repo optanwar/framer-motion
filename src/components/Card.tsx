@@ -1,6 +1,45 @@
-import { motion } from "framer-motion";
+import { easeInOut, motion, AnimatePresence } from "framer-motion";
+import { MessageCircleDashed, X } from "lucide-react";
+import React, { useState } from "react";
 
-const AboutPage: React.FC = () => {
+const containerVariants = {
+  hidden: { opacity: 0, scale: 0.9, rotateX: -15 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotateX: 0,
+    transition: {
+      duration: 0.6,
+      ease: easeInOut,
+      when: "beforeChildren",
+      staggerChildren: 0.1,
+    },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.85,
+    rotateX: 15,
+    transition: { duration: 0.4, ease: easeInOut },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: easeInOut },
+  },
+  exit: {
+    opacity: 0,
+    y: -10,
+    transition: { duration: 0.3 },
+  },
+};
+
+const CardPage: React.FC = () => {
+  const [open, setOpen] = useState(true);
+
   return (
     <div
       className="h-screen w-full flex items-center justify-center bg-neutral-900"
@@ -8,80 +47,87 @@ const AboutPage: React.FC = () => {
         backgroundImage:
           "radial-gradient(circle at 0.5px 0.5px, rgba(6,182,212,0.25) 1px, transparent 0)",
         backgroundSize: "8px 8px",
-        backgroundRepeat: "repeat",
         perspective: "1200px",
       }}
     >
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        whileHover={{
-          scale: 1.08,
-          rotateX: -12,
-          rotateY: 14,
-          boxShadow: "0 30px 70px rgba(6,182,212,0.45)",
-        }}
-        whileTap={{
-          scale: 0.96,
-          rotateX: 0,
-          rotateY: 0,
-        }}
-        className="
-          group relative
-          px-20 py-6
-          rounded-xl
-          bg-white/5
-          backdrop-blur-xl
-          text-neutral-200
-          text-lg font-medium
-          border border-white/10
-          shadow-[0px_1px_2px_0px_rgba(255,255,255,0.15)_inset,0px_-1px_2px_0px_rgba(255,255,255,0.15)_inset]
-          overflow-hidden cursor-pointer
-          transform-gpu
-        "
-        style={{ transformStyle: "preserve-3d" }}
-      >
-        {/* Glass shine */}
-        <span
-          className="
-            absolute inset-0
-            bg-gradient-to-br from-white/20 via-transparent to-transparent
-            opacity-40
-            pointer-events-none
-          "
-        />
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="
+              w-72 h-[28rem]
+              p-4 flex flex-col
+              rounded-xl bg-white
+              border border-white/10
+              shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(0,0,0,0.08),0_24px_68px_rgba(0,0,0,0.25)]
+            "
+          >
+            {/* Title */}
+            <motion.h2 variants={itemVariants} className="text-black text-xs font-semibold">
+              UI Card Components
+            </motion.h2>
 
-        {/* Text layer */}
-        <span
-          className="relative z-10"
-          style={{ transform: "translateZ(40px)" }}
-        >
-          Subscribeddsds
-        </span>
+            {/* Description */}
+            <motion.p
+              variants={itemVariants}
+              className="text-neutral-800 mt-2 text-xs leading-relaxed"
+            >
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Dolore, temporibus!
+            </motion.p>
 
-        {/* Glow underline */}
-        <span
-          className="
-            absolute inset-x-0 bottom-0
-            h-px w-3/4 mx-auto
-            bg-gradient-to-r from-transparent via-cyan-400 to-transparent
-          "
-        />
+            {/* Close Button */}
+            <motion.button
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setOpen(false)}
+              className="cursor-pointer py-2 px-3 rounded-sm flex justify-center items-center my-2 gap-1 text-[10px]
+              shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(0,0,0,0.08),0_24px_68px_rgba(0,0,0,0.25)]"
+            >
+              close card <X className="h-2.5 w-4" />
+            </motion.button>
 
-        {/* Hover glow */}
-        <span
-          className="
-            absolute inset-x-0 bottom-0
-            h-px w-full mx-auto
-            bg-gradient-to-r from-transparent via-cyan-400 to-transparent
-            opacity-0 group-hover:opacity-100
-            blur-2xl transition-opacity duration-300
-          "
-        />
-      </motion.button>
+            {/* Message Box */}
+            <motion.div
+              variants={itemVariants}
+              className="p-2 border border-gray-200 mt-2 rounded-xl h-full"
+            >
+              <motion.div
+                initial="hidden"
+                whileHover="visible"
+                animate="hidden"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.08 },
+                  },
+                }}
+                className="flex flex-col divide-y divide-amber-50"
+              >
+                {[1, 2, 3].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    variants={itemVariants}
+                    whileHover={{ x: 4 }}
+                    className="bg-gray-200 p-2 flex items-center text-[10px] gap-2
+                    shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(0,0,0,0.08)]"
+                  >
+                    <MessageCircleDashed className="h-4 w-4" />
+                    Message
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
 
-export default AboutPage;
+export default CardPage;

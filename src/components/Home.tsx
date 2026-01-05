@@ -30,6 +30,14 @@ const HomePage: React.FC = () => {
             Card Example
           </Link>
         </li>
+            <li>
+          <Link
+            to="/card-advanced"
+            className="text-fuchsia-50 hover:underline"
+          >
+            Advanced Card Example
+          </Link>
+        </li>
       </ul>
     </main>
   );
