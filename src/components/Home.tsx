@@ -1,69 +1,82 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
+const container = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 14 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { ease: "easeOut", duration: 0.4 },
+  },
+};
 
 const HomePage: React.FC = () => {
   return (
-    <main className="min-h-screen p-6 w-full  bg-neutral-900" style={{
+    <motion.main
+      variants={container}
+      initial="hidden"
+      animate="visible"
+      className="min-h-screen p-6 w-full bg-neutral-900"
+      style={{
         backgroundImage:
           "radial-gradient(circle at 0.5px 0.5px, rgba(6,182,212,0.25) 1px, transparent 0)",
         backgroundSize: "8px 8px",
         backgroundRepeat: "repeat",
         perspective: "1200px",
-      }}>
-      <h1 className="text-3xl font-bold mb-4 text-white">
-        Hello, Framer Motion
-      </h1>
+      }}
+    >
+      {/* Title */}
+      <motion.h1
+        variants={item}
+        className="text-3xl font-bold mb-6 text-white"
+      >
+        Hello, Framer Motion 👋
+      </motion.h1>
 
-      <ul className="list-disc pl-6 space-y-2 text-white">
-        <li>
-          <Link
-            to="/basic"
-            className="text-fuchsia-50 hover:underline"
+      {/* Navigation */}
+      <motion.ul
+        variants={container}
+        className="space-y-3 text-white max-w-md"
+      >
+        {[
+          { to: "/basic", label: "Basic Button Example" },
+          { to: "/card", label: "Card Example" },
+          { to: "/card-advanced", label: "Advanced Card Example" },
+          { to: "/sidebar", label: "Sidebar Example" },
+          { to: "/scroll", label: "Scroll Example" },
+          { to: "/layouts-in-motion", label: "Layout Motion Example" },
+          { to: "/text-animation", label: "Text Animation Example" },
+        ].map((link) => (
+          <motion.li
+            key={link.to}
+            variants={item}
+            whileHover={{
+              x: 6,
+            }}
+            transition={{ type: "spring", stiffness: 300 }}
           >
-            Basic Button Example
-          </Link>
-        </li>
-           <li>
-          <Link
-            to="/card"
-            className="text-fuchsia-50 hover:underline"
-          >
-            Card Example
-          </Link>
-        </li>
-            <li>
-          <Link
-            to="/card-advanced"
-            className="text-fuchsia-50 hover:underline"
-          >
-            Advanced Card Example
-          </Link>
-        </li>
-          <li>
-          <Link
-            to="/sidebar"
-            className="text-fuchsia-50 hover:underline"
-          >
-            Sidebar Example
-          </Link>
-        </li>
-           <li>
-          <Link
-            to="/scroll"
-            className="text-fuchsia-50 hover:underline"
-          >
-            Scroll Example
-          </Link>
-        </li>
-             <li>
-          <Link
-            to="/layouts-in-motion"
-            className="text-fuchsia-50 hover:underline"
-          >
-            Layout motion Example
-          </Link>
-        </li>
-      </ul>
-    </main>
+            <Link
+              to={link.to}
+              className="block rounded-lg px-4 py-2 bg-neutral-800/60
+                         hover:bg-neutral-700/60 border border-neutral-700
+                         backdrop-blur-md"
+            >
+              {link.label}
+            </Link>
+          </motion.li>
+        ))}
+      </motion.ul>
+    </motion.main>
   );
 };
 

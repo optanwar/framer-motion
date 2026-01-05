@@ -6,6 +6,7 @@ import AdvanedCard from "./components/AdvancedCard";
 import Sidebar from "./components/Sidebar";
 import ScrollBase from "./components/ScrollBase";
 import LayoutsInMotion from "./components/LayoutsInMotion";
+import TextAnimaiton from "./components/TextAnimaiton";
 
 const App: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const App: React.FC = () => {
         <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/scroll" element={<ScrollBase />} />
           <Route path="/layouts-in-motion" element={<LayoutsInMotion />} />
+          <Route path="/text-animation" element={<TextAnimaiton />} />
 
       </Routes>
     </>
