@@ -46,6 +46,14 @@ const HomePage: React.FC = () => {
             Sidebar Example
           </Link>
         </li>
+           <li>
+          <Link
+            to="/scroll"
+            className="text-fuchsia-50 hover:underline"
+          >
+            Scroll Example
+          </Link>
+        </li>
       </ul>
     </main>
   );
